@@ -30,7 +30,7 @@ public class CardApplicationTests {
         options.addArguments("--no-sandbox");
         options.addArguments("--headless");
         driver = new ChromeDriver(options);
-        driver.get("http://0.0.0.0:9999");
+        driver.get("http://localhost:9999");
     }
 
     @AfterEach
@@ -103,7 +103,6 @@ public class CardApplicationTests {
     @Test
     void notInputPhoneNumber() {
         WebElement form = driver.findElement(By.cssSelector("form"));
-        List<WebElement> inputs = form.findElements(By.cssSelector("input"));
         form.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Иванов Иван");
         form.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("");
         driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
@@ -116,7 +115,6 @@ public class CardApplicationTests {
     @Test
     void inputLettersInPhoneNumberField() {
         WebElement form = driver.findElement(By.cssSelector("form"));
-        List<WebElement> inputs = form.findElements(By.cssSelector("input"));
         form.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Иванов Иван");
         form.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("Иваниванов");
         driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
@@ -129,7 +127,6 @@ public class CardApplicationTests {
     @Test
     void notClickInCheckBox() {
         WebElement form = driver.findElement(By.cssSelector("form"));
-        List<WebElement> inputs = form.findElements(By.cssSelector("input"));
         form.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Иванов Иван");
         form.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79876543210");
         driver.findElement(By.cssSelector(".button__text")).click();
